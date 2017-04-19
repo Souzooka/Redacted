@@ -14,15 +14,11 @@ const WORDFILTERS = {
   'yolo'      :   'carpe diem'
 };
 
-/** function filterWords
-  * Parameters:
-  *   String to be filtered
-  * Return value:
-  *   A filtered string according to
-  *   the WORDFILTERS object listed at the top
-  *   of this document.
+/** middleware filterWords
+  * Searches to see if req.body.message contains a string
+  * that matches a WORDFILTERS key and if so, replaces that
+  * portion with the corresponding value in WORDFILTERS
   */
-// function filterWords
 router.use((req, res, next) => {
   const filterKeys = Object.keys(WORDFILTERS);
   const filterValues = Object.values(WORDFILTERS);
