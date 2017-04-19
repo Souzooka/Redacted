@@ -22,19 +22,21 @@ const WORDFILTERS = {
   *   the WORDFILTERS object listed at the top
   *   of this document.
   */
-function filterWords(str) {
+// function filterWords
+router.use((req, res, next) => {
   const filterKeys = Object.keys(WORDFILTERS);
   const filterValues = Object.values(WORDFILTERS);
   for (let i = 0; i < filterKeys.length; ++i) {
-    const re = new RegExp('regex', `/\\b${filterKeys[i]}\\b/gi`);
-    str.replace(re, filterValues[i]);
+    const re = new RegExp(`\\b${filterKeys[i]}\\b`, 'gi');
+    req.body.message = req.body.message.replace(re, filterValues[i]);
   }
-  return str;
-}
+  next();
+});
+
 
 router.route('/')
       .post((req, res) => {
-        res.send(filterWords(req.body.message));
+        res.send(req.body.message);
       });
 
 module.exports = router;

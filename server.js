@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const indexRoutes = require('./routes/message.js');
+const messageRoutes = require('./routes/message.js');
 
 // parse application/x-www-form-urlencoded
 // attach to req.body
