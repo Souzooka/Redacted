@@ -22,6 +22,7 @@ const WORDFILTERS = {
 router.use((req, res, next) => {
   const filterKeys = Object.keys(WORDFILTERS);
   const filterValues = Object.values(WORDFILTERS);
+
   for (let i = 0; i < filterKeys.length; ++i) {
     const re = new RegExp(`\\b${filterKeys[i]}\\b`, 'gi');
     req.body.message = req.body.message.replace(re, filterValues[i]);
